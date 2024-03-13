@@ -6,10 +6,15 @@ def get_boot_time():
     return boot_time
 
 def main():
-    boot_time = get_boot_time()   
-    current_time = datetime.now()  
+    boot_time = get_boot_time()
+    current_time = datetime.now()
     time_difference = (current_time - boot_time).total_seconds() / 60
-    print("Time since boot-up: {:.2f} minutes".format(time_difference))
+    if time_difference <= 10:
+        time_remaining = 10 - time_difference
+        print("Error: Boot-up time less than 10 minutes ago.")
+        print("Time remaining until success: {:.2f} minutes".format(time_remaining))
+    else:
+        print("Success: Boot-up time more than 10 minutes ago.")
 
 if __name__ == "__main__":
     main()
